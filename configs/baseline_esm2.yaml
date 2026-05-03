@@ -1,0 +1,25 @@
+# CAFA 6 ESM-2 embedding extraction defaults.
+
+model:
+  name: esm2_t33_650M_UR50D
+  repr_layer: 33
+  inference_batch_size: 1
+  max_sequence_length: 1022
+
+batches:
+  sequence_batch_size: 512
+  train_sequences: data/processed/train_sequences.parquet
+  test_sequences: data/processed/test_sequences.parquet
+
+outputs:
+  train_dir: artifacts/embeddings/esm2_train
+  test_dir: artifacts/embeddings/esm2_test
+  train_manifest: artifacts/embeddings/esm2_train/manifest.csv
+  test_manifest: artifacts/embeddings/esm2_test/manifest.csv
+
+colab:
+  install:
+    - pip install fair-esm torch pandas pyarrow numpy
+  extraction_script:
+    - python scripts/prepare_embedding_batches.py
+    - open notebooks/01_extract_esm2_embeddings.ipynb in Colab and run pending batches

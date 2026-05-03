@@ -1,0 +1,26 @@
+# CAFA 6 homology transfer defaults.
+#
+# External search is intentionally not hidden inside Python. Generate hit files
+# with MMseqs/DIAMOND, then aggregate them with scripts/run_homology.py.
+
+inputs:
+  train_terms: data/processed/train_terms_closure.parquet
+  folds: data/processed/folds_clustered.parquet
+  valid_hits: artifacts/retrieval/mmseqs_hits_valid.parquet
+  test_hits: artifacts/retrieval/mmseqs_hits_test.parquet
+
+outputs:
+  valid_hits_filtered: artifacts/retrieval/mmseqs_hits_valid.parquet
+  test_hits_filtered: artifacts/retrieval/mmseqs_hits_test.parquet
+  homology_oof: artifacts/retrieval/homology_oof.parquet
+  homology_test: artifacts/retrieval/homology_test.parquet
+  report: artifacts/reports/homology_report.json
+
+aggregation:
+  max_hits_per_query: 100
+  min_hit_weight: 0.0
+  closure_relations: [is_a, part_of]
+  score_formula: noisy_or_over_hit_weights
+  exclude_oof_self_hits: true
+  exclude_oof_same_fold_hits: true
+  exclude_test_self_hits: true
