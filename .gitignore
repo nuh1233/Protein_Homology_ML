@@ -1,0 +1,39 @@
+# Data and generated artifacts
+data/raw/
+data/processed/
+artifacts/
+submissions/
+
+# Secrets and credentials
+.kaggle/
+kaggle.json
+access_token
+*.env
+.env
+
+# Large generated file formats
+*.npy
+*.npz
+*.parquet
+*.joblib
+*.pkl
+*.tsv
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
